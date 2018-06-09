@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     private myRoute: Router,
     private auth: AuthService) {
     this.form = fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if (this.form.valid) {
-      this.auth.sendToken(this.form.value.email)
+      this.auth.sendToken(this.form.value)
       this.myRoute.navigate(["home"]);
     }
   }

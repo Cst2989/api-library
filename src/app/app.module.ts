@@ -16,6 +16,9 @@ import { MatInputModule } from '@angular/material';
 import { AuthService } from './auth.service';
 
 import { AuthGuard } from './auth.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -35,6 +38,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatFormFieldModule,
     MatToolbarModule,
@@ -49,7 +53,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 
