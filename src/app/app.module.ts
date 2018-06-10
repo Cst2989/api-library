@@ -23,6 +23,8 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { UserResolver } from './user.resolver';
 import { LoanedResolver } from './viewloaned/viewloaned.resolver';
 import { ViewloanedComponent } from './viewloaned/viewloaned.component';
+import { BooksComponent } from './books/books.component';
+import { AuthorsComponent } from './authors/authors.component';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], resolve: { user: UserResolver } },
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     EditprofileComponent,
-    ViewloanedComponent
+    ViewloanedComponent,
+    BooksComponent,
+    AuthorsComponent
   ],
   imports: [
     BrowserModule,
