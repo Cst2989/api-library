@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MatTableDataSource } from '@angular/material';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
@@ -19,9 +19,15 @@ import { AuthGuard } from './auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EditprofileComponent } from './editprofile/editprofile.component';
+import { UserResolver } from './user.resolver';
+import { LoanedResolver } from './viewloaned/viewloaned.resolver';
+import { ViewloanedComponent } from './viewloaned/viewloaned.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], resolve: { user: UserResolver } },
+  { path: 'edit-profile', component: EditprofileComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }},
+  { path: 'view-loaned', component: ViewloanedComponent, canActivate: [AuthGuard], resolve: { books: LoanedResolver }},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
  
@@ -33,7 +39,9 @@ const appRoutes: Routes = [
     NavComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditprofileComponent,
+    ViewloanedComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +54,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatInputModule,
     MatSidenavModule,
+    MatTableDataSource,
     MatIconModule,
     MatListModule,
     MatGridListModule,

@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute} from '@angular/router';
+import { AuthService } from '../auth.service';
+
+@Component({
+  selector: 'app-editprofile',
+  templateUrl: './editprofile.component.html',
+  styleUrls: ['./editprofile.component.css']
+})
+export class EditprofileComponent implements OnInit {
+
+  form;
+  userData;
+
+  constructor(private fb: FormBuilder,
+    private myRoute: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService) {
+  	this.userData = this.route.snapshot.data.user;
+    this.form = fb.group({
+      username: [userData.username ? userData.username : '', [Validators.required]],
+      email: [userData.email ? userData.email : '', [Validators.required]],
+      name: [userData.name ? userData.name : '', Validators.required]
+    });
+  }
+  ngOnInit() {
+  }
+  edit() {
+    if (this.form.valid) {
+      this.auth.editProfile(this.form.value)
+      this.myRoute.navigate(["dashboard"]);
+    }
+  }
+
+}

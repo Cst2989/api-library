@@ -27,4 +27,28 @@ export class AuthService {
   register(formValue) {
     return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/signup', formValue , { observe: 'response' });
   }
+
+  editProfile(formValue) {
+    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/update', formValue);
+  }
+
+  getUser() {
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/view');
+  }
+
+  getLoaned() {
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/view/lent_books');
+  }
+
+  getRole(username) {
+    if (username.indexOf('_tester') > -1 ) return 'tester';
+    return 'user';
+  }
+
+  getSandbox(username) {
+    if (username.indexOf('_tester') > -1 ) {
+      username = username.split('_')[0];
+    }
+    return username;
+  }
 }
