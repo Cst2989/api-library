@@ -25,9 +25,27 @@ import { LoanedResolver } from './viewloaned/viewloaned.resolver';
 import { ViewloanedComponent } from './viewloaned/viewloaned.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { AuthorsResolver } from './authors/authors.resolver';
+import { BooksResolver } from './books/books.resolver';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], resolve: { user: UserResolver } },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }, children: [{
+        path: ':sandbox',
+        children: [
+            {
+                path: 'authors',
+                component: AuthorsComponent,
+                canActivate: [AuthGuard],
+                resolve: { authors: AuthorsResolver }
+            },
+            {
+                path: 'books',
+                component: BooksComponent,
+                canActivate: [AuthGuard],
+                resolve: { authors: BooksResolver }
+            }
+        ]
+    }]},
   { path: 'edit-profile', component: EditprofileComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }},
   { path: 'view-loaned', component: ViewloanedComponent, canActivate: [AuthGuard], resolve: { books: LoanedResolver }},
   { path: 'login', component: LoginComponent },

@@ -5,24 +5,23 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthService {
   constructor(private myRoute: Router,
-              private http: HttpClient) { 
-  }
+              private http: HttpClient) {}
   sendToken(form) {
-    let token = this.encrypt(form);
-    localStorage.setItem("token", token)
+    const token = this.encrypt(form);
+    localStorage.setItem('token', token);
   }
   encrypt(form) {
     return btoa(form.username + ':' + form.password);
   }
   getToken() {
-    return localStorage.getItem("token")
+    return localStorage.getItem('token');
   }
   isLoggednIn() {
     return this.getToken() !== null;
   }
   logout() {
-    localStorage.removeItem("token");
-    this.myRoute.navigate(["login"]);
+    localStorage.removeItem('token');
+    this.myRoute.navigate(['token']);
   }
   register(formValue) {
     return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/signup', formValue , { observe: 'response' });
@@ -40,8 +39,18 @@ export class AuthService {
     return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/view/lent_books');
   }
 
+  getAuthors(sandbox) {
+        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authos/' + sandbox);
+  }
+
+  getBooks(sandbox) {
+        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox);
+  }
+
   getRole(username) {
-    if (username.indexOf('_tester') > -1 ) return 'tester';
+    if (username.indexOf('_tester') > -1 ) {
+      return 'tester';
+    }
     return 'user';
   }
 

@@ -9,8 +9,8 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class ViewloanedComponent implements OnInit {
   books;
-  constructor(private route: ActivatedRoute) { 
-  	this.books = new MatTableDataSource(this.route.snapshot.data.books);
+  constructor(private route: ActivatedRoute) {
+    this.books = new MatTableDataSource(this.route.snapshot.data.books);
   }
 
   ngOnInit() {
