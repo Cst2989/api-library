@@ -40,7 +40,23 @@ export class AuthService {
   }
 
   getAuthors(sandbox) {
-        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authos/' + sandbox);
+        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox);
+  }
+
+  getAuthor(sandbox, id) {
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
+  }
+
+  updateAuthor(sandbox, id, formValue) {
+    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, formValue);
+  }
+
+  createAuthor(sandbox, id, formValue) {
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, formValue);
+  }
+
+  deleteAuthor(sandbox, id) {
+      return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
   }
 
   getBooks(sandbox) {
