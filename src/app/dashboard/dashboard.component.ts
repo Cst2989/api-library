@@ -13,9 +13,9 @@ export class DashboardComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService) {
-  	this.userData = this.route.snapshot.data.user;
+  	this.user = this.route.snapshot.data.user;
   }
   ngOnInit() {
-  	this.sandbox = this.auth.getSandbox(this.userData.username);
+  	this.sandbox = this.auth.getSandbox(this.user.username);
   }
 }

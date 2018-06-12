@@ -21,7 +21,7 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('token');
-    this.myRoute.navigate(['token']);
+    this.myRoute.navigate(['login']);
   }
   register(formValue) {
     return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/signup', formValue , { observe: 'response' });

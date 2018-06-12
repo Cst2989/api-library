@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
     if (this.form.valid) {
       this.auth.register(this.form.value).subscribe(r => {
         console.log(r);
-        this.auth.sendToken(this.form.value)
-      	this.myRoute.navigate(["dashboard"]);
+        this.auth.sendToken(this.form.value);
+      	this.myRoute.navigate(['dashboard']);
       })
     }
   }

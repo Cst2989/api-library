@@ -19,9 +19,9 @@ export class EditprofileComponent implements OnInit {
     private auth: AuthService) {
   	this.userData = this.route.snapshot.data.user;
     this.form = fb.group({
-      username: [userData.username ? userData.username : '', [Validators.required]],
-      email: [userData.email ? userData.email : '', [Validators.required]],
-      name: [userData.name ? userData.name : '', Validators.required]
+      username: [ this.userData.username ? this.userData.username : '', [Validators.required]],
+      email: [ this.userData.email ? this.userData.email : '', [Validators.required]],
+      name: [ this.userData.name ? this.userData.name : '', Validators.required]
     });
   }
   ngOnInit() {
@@ -29,7 +29,7 @@ export class EditprofileComponent implements OnInit {
   edit() {
     if (this.form.valid) {
       this.auth.editProfile(this.form.value)
-      this.myRoute.navigate(["dashboard"]);
+      this.myRoute.navigate(['dashboard']);
     }
   }
 

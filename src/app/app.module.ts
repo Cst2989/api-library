@@ -76,7 +76,6 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatInputModule,
     MatSidenavModule,
-    MatTableDataSource,
     MatIconModule,
     MatListModule,
     MatGridListModule,
@@ -84,7 +83,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule
   ],
-  providers: [AuthService, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [AuthService, UserResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 
