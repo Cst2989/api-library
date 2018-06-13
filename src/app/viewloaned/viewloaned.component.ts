@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-viewloaned',
@@ -10,7 +9,7 @@ import {MatTableDataSource} from '@angular/material';
 export class ViewloanedComponent implements OnInit {
   books;
   constructor(private route: ActivatedRoute) {
-    this.books = new MatTableDataSource(this.route.snapshot.data.books);
+    this.books = this.route.snapshot.data.books;
   }
 
   ngOnInit() {

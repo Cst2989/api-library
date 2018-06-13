@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
@@ -10,7 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { AuthService } from './auth.service';
@@ -25,27 +24,37 @@ import { LoanedResolver } from './viewloaned/viewloaned.resolver';
 import { ViewloanedComponent } from './viewloaned/viewloaned.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
+import { AuthorComponent } from './authors/author.component';
 import { AuthorsResolver } from './authors/authors.resolver';
+import { AuthorResolver } from './authors/author.resolver';
 import { BooksResolver } from './books/books.resolver';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }, children: [{
-        path: ':sandbox',
-        children: [
-            {
-                path: 'authors',
-                component: AuthorsComponent,
-                canActivate: [AuthGuard],
-                resolve: { authors: AuthorsResolver }
-            },
-            {
-                path: 'books',
-                component: BooksComponent,
-                canActivate: [AuthGuard],
-                resolve: { authors: BooksResolver }
-            }
-        ]
-    }]},
+  {
+      path: 'dashboard',
+      component: DashboardComponent,
+      canActivate: [AuthGuard],
+      resolve: { user: UserResolver },
+  },
+  {
+      path: 'author/:id/:sandbox',
+      component: AuthorComponent,
+      canActivate: [AuthGuard],
+      resolve: { author: AuthorResolver },
+  },
+  {
+    path: ':sandbox/authors',
+    component: AuthorsComponent,
+    canActivate: [AuthGuard],
+    resolve: { authors: AuthorsResolver },
+
+  },
+  {
+    path: ':sandbox/books',
+    component: BooksComponent,
+    canActivate: [AuthGuard],
+    resolve: { authors: BooksResolver }
+  },
   { path: 'edit-profile', component: EditprofileComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }},
   { path: 'view-loaned', component: ViewloanedComponent, canActivate: [AuthGuard], resolve: { books: LoanedResolver }},
   { path: 'login', component: LoginComponent },
@@ -63,7 +72,8 @@ const appRoutes: Routes = [
     EditprofileComponent,
     ViewloanedComponent,
     BooksComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +93,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule
   ],
-  providers: [AuthService, UserResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [AuthService, UserResolver, AuthorResolver, LoanedResolver, AuthorsResolver, BooksResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

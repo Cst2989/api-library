@@ -1,6 +1,6 @@
 .grid-container {
-  margin: 20px;
-}
+   margin: 20px;
+ }
 
 .dashboard-card {
   position: absolute;
@@ -18,4 +18,10 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+.example-card {
+  max-width: 400px;
+  float: left;
+  margin-left: 25px;
+  margin-bottom: 25px;
 }

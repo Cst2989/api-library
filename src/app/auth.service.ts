@@ -51,8 +51,8 @@ export class AuthService {
     return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, formValue);
   }
 
-  createAuthor(sandbox, id, formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, formValue);
+  createAuthor(sandbox, formValue) {
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox , formValue);
   }
 
   deleteAuthor(sandbox, id) {
