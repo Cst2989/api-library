@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   returnBook(sandbox, id, userId) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/return/' + userId, {},{ observe: 'response' });
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/returned/' + userId, {},{ observe: 'response' });
   }
 
   createBook(sandbox, formValue) {

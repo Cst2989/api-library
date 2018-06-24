@@ -60,15 +60,27 @@ export class BookComponent implements OnInit {
     lendBook() {
         this.auth.lendBook(this.sandbox, this.book.id, this.lender).subscribe(r => {
             if (r.status === 204) {
-                alert('Book was loaned');
+                this.auth.getBook(this.sandbox, this.book.id).subscribe(book => {
+                    this.book = book;
+                    alert('Book was loaned');
+                });
+            }
+            if (r.status === 403) {
+                alert('Forbidden');
             }
         });
     }
 
     returnBook() {
-        this.auth.returnBook(this.sandbox, this.book.id, this.lender).subscribe(r => {
+        this.auth.returnBook(this.sandbox, this.book.id, this.returner).subscribe(r => {
             if (r.status === 204) {
-                alert('Book was returned');
+                this.auth.getBook(this.sandbox, this.book.id).subscribe(book => {
+                    this.book = book;
+                    alert('Book was returned');
+                });
+            }
+            if (r.status === 403) {
+                alert('Forbidden');
             }
         });
     }
