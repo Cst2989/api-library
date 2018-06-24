@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { AuthService } from './auth.service';
-
+import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.service';
@@ -99,6 +99,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     ReactiveFormsModule,
     MatButtonModule,
+    FormsModule,
     MatInputModule,
     MatSelectModule,
     MatSidenavModule,

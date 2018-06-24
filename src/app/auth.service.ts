@@ -71,6 +71,14 @@ export class AuthService {
     return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id, formValue);
   }
 
+  lendBook(sandbox, id, userId) {
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/lend/' + userId, {},{ observe: 'response' });
+  }
+
+  returnBook(sandbox, id, userId) {
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/return/' + userId, {},{ observe: 'response' });
+  }
+
   createBook(sandbox, formValue) {
     return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox , formValue,  { observe: 'response' });
   }

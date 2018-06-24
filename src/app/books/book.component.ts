@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class BookComponent implements OnInit {
     book;
     form;
+    lender;
+    returner;
     view: boolean = false;
     sandbox;
     authors$;
@@ -43,16 +45,31 @@ export class BookComponent implements OnInit {
                 this.authors$.subscribe(au => {
                     au.map(a => {
                         if(a.id === this.form.get('authors').value) {
-                            let value = [];
+                            const value = [];
                             value.push(a);
                             this.form.get('authors').patchValue(value)
                             this.auth.updateBook(this.sandbox, this.book.id, this.form.value).subscribe(r => {
                                 this.myRoute.navigate([this.sandbox, 'books']);
                             });
                         }
-                    })
-                })
+                    });
+                });
             }
         }
+    }
+    lendBook() {
+        this.auth.lendBook(this.sandbox, this.book.id, this.lender).subscribe(r => {
+            if (r.status === 204) {
+                alert('Book was loaned');
+            }
+        });
+    }
+
+    returnBook() {
+        this.auth.returnBook(this.sandbox, this.book.id, this.lender).subscribe(r => {
+            if (r.status === 204) {
+                alert('Book was returned');
+            }
+        });
     }
 }
