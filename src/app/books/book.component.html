@@ -1,7 +1,7 @@
 <mat-grid-list cols="1" rowHeight="500px">
     <mat-grid-tile>
         <mat-card>
-            <form [formGroup]="form" (ngSubmit)="updateBook()">
+            <form *ngIf="!view" [formGroup]="form" (ngSubmit)="updateBook()">
                 <mat-form-field>
                     <input matInput type="text" placeholder="Book Name" formControlName="name" />
                 </mat-form-field> <br>
@@ -23,5 +23,10 @@
                 </mat-form-field> <br>
                 <button mat-raised-button type="submit" color="primary">Update Book</button>
             </form>
+            <span *ngIf="view">
+                <h3>{{ book.name }} by {{ this.book.authors[0].firstName }} {{ this.book.authors[0].lastName }}</h3>
+                <h5>Total Books: {{this.book.total }}</h5>
+                <h5>Available Books: {{this.book.available }}</h5>
+            </span>
         </mat-card>
     </mat-grid-tile>

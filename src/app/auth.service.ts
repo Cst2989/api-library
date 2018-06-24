@@ -52,11 +52,11 @@ export class AuthService {
   }
 
   createAuthor(sandbox, formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox , formValue);
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox , formValue, { observe: 'response' });
   }
 
   deleteAuthor(sandbox, id) {
-    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
+    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, { observe: 'response' });
   }
 
   getBooks(sandbox) {
@@ -72,11 +72,11 @@ export class AuthService {
   }
 
   createBook(sandbox, formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox , formValue);
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox , formValue,  { observe: 'response' });
   }
 
   deleteBook(sandbox, id) {
-    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id);
+    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id, { observe: 'response' });
   }
 
   getRole(username) {

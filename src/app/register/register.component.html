@@ -1,11 +1,11 @@
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="register()">
     <mat-form-field>
-      <input matInput type="text" placeholder="Username" formControlName="username" />
+      <input matInput type="text" id="register_username" placeholder="Username" formControlName="username" />
     </mat-form-field> <br>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <input matInput type="password" id="register_password" placeholder="Password" formControlName="password" />
     </mat-form-field> <br>
-    <button mat-raised-button type="submit" color="primary">Register</button>
+    <button mat-raised-button type="submit" id="register" color="primary">Register</button>
   </form>
 </mat-card>

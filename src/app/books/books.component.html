@@ -1,37 +1,37 @@
-<mat-grid-list cols="2" rowHeight="500px">
+<mat-grid-list cols="2" >
 	<mat-grid-tile>
 		<mat-list>
 			<h3 mat-subheader>Books</h3>
 			<mat-list-item *ngFor="let book of books">
 				<mat-icon mat-list-icon>book</mat-icon>
-				<h4 mat-line><strong>{{book.name}} </strong> Total: {{book.total}}  Available: {{book.available}}<span [routerLink]="'/book/' + book.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span (click)="delete(book.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
+				<h4 mat-line><a [id]="'view_' + book.id" [routerLink]="'/book/' + book.id + '/' + sandbox + '/view'"><strong>{{book.name}} </strong></a> Total: {{book.total}}  Available: {{book.available}}<span [id]="'edit_'+ book.id " [routerLink]="'/book/' + book.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span [id]="'delete_'+ book.id " (click)="delete(book.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
 			</mat-list-item>
 			<mat-divider></mat-divider>
 		</mat-list>
 	</mat-grid-tile>
 	<mat-grid-tile>
 		<mat-card>
-			<form [formGroup]="form" (ngSubmit)="addBook()">
+			<form [formGroup]="form" (ngSubmit)="addBook()" #f="ngForm">
 				<mat-form-field>
-					<input matInput type="text" placeholder="Book Name" formControlName="name" />
+					<input matInput id="create_name" type="text" placeholder="Book Name" formControlName="name" />
 				</mat-form-field> <br>
 				<mat-form-field>
-					<mat-select placeholder="Select author" formControlName="authors">
+					<mat-select id="select_authors" placeholder="Select author" formControlName="authors">
 					    <mat-option *ngFor="let author of authors$ | async" [value]="author.id">
 					      {{ author.firstName }}  {{ author.lastName }}
 					    </mat-option>
 					</mat-select>
 				</mat-form-field> <br>
 				<mat-form-field>
-					<input matInput type="text" placeholder="Number of Books" formControlName="total" />
+					<input matInput id="create_total" type="text" placeholder="Number of Books" formControlName="total" />
 				</mat-form-field> <br>
 				<mat-form-field>
-					<input matInput type="text" placeholder="Number of available Books" formControlName="available" />
+					<input matInput id="create_available" type="text" placeholder="Number of available Books" formControlName="available" />
 				</mat-form-field> <br>
 				<mat-form-field>
-					<input matInput type="text" placeholder="Id" formControlName="id" />
+					<input matInput type="text" id="create_id" placeholder="Id" formControlName="id" />
 				</mat-form-field> <br>
-				<button mat-raised-button type="submit" color="primary">Create Book</button>
+				<button mat-raised-button type="submit" id="create_book" color="primary">Create Book</button>
 			</form>
 		</mat-card>
 	</mat-grid-tile>

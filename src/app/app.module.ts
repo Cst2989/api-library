@@ -62,6 +62,13 @@ const appRoutes: Routes = [
       canActivate: [AuthGuard],
       resolve: { book: BookResolver },
   },
+  {
+      path: 'book/:id/:sandbox/view',
+      component: BookComponent,
+      canActivate: [AuthGuard],
+      data: { 'view': true },
+      resolve: { book: BookResolver },
+  },
   { path: 'edit-profile', component: EditprofileComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }},
   { path: 'view-loaned', component: ViewloanedComponent, canActivate: [AuthGuard], resolve: { books: LoanedResolver }},
   { path: 'login', component: LoginComponent },

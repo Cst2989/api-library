@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AuthorsComponent implements OnInit {
   authors;
   form;
+    @ViewChild('f') myNgForm;
   sandbox;
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -31,13 +32,22 @@ export class AuthorsComponent implements OnInit {
     addAuthor() {
         if (this.form.valid) {
             this.auth.createAuthor(this.sandbox, this.form.value).subscribe(r => {
-                this.myRoute.navigate(['dashboard']);
+                if (r.status === 201) {
+                    this.auth.getAuthors(this.sandbox).subscribe(a => {
+                        this.authors = a;
+                        this.myNgForm.resetForm();
+                    });
+                }
             });
         }
     }
     delete(id) {
         this.auth.deleteAuthor(this.sandbox, id).subscribe(r => {
-            this.myRoute.navigate(['dashboard']);
+            if (r.status === 204) {
+                this.auth.getAuthors(this.sandbox).subscribe(a => {
+                    this.authors = a;
+                });
+            }
         });
     }
 }

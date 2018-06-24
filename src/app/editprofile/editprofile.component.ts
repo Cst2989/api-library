@@ -29,7 +29,7 @@ export class EditprofileComponent implements OnInit {
   edit() {
     if (this.form.valid) {
       this.auth.editProfile(this.form.value).subscribe(data => {
-          this.myRoute.navigate(['dashboard']);
+          //this.myRoute.navigate(['dashboard']);
       });
     }
   }

@@ -1,14 +1,14 @@
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="edit()">
     <mat-form-field>
-      <input matInput type="text" placeholder="Username" formControlName="username" />
+      <input matInput type="text" id="edit_username" placeholder="Username" formControlName="username" />
     </mat-form-field> <br>
     <mat-form-field>
-      <input matInput type="email" placeholder="Email" formControlName="email" />
+      <input matInput type="email" id="edit_email" placeholder="Email" formControlName="email" />
     </mat-form-field> <br>
     <mat-form-field>
-      <input matInput type="name" placeholder="Name" formControlName="name" />
+      <input matInput type="name" id="edit_name" placeholder="Name" formControlName="name" />
     </mat-form-field> <br>
-    <button mat-raised-button type="submit" color="primary">Edit</button>
+    <button mat-raised-button type="submit" id="edit" color="primary">Edit</button>
   </form>
 </mat-card>

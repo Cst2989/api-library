@@ -1,11 +1,11 @@
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="login()">
     <mat-form-field>
-      <input matInput type="text" placeholder="Username" formControlName="username" />
+      <input matInput id="login_username" type="text" placeholder="Username" formControlName="username" />
     </mat-form-field> <br>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <input matInput id="login_password" type="password" placeholder="Password" formControlName="password" />
     </mat-form-field> <br>
-    <button mat-raised-button type="submit" color="primary">Login</button>
+    <button mat-raised-button type="submit" id="login" color="primary">Login</button>
   </form>
 </mat-card>

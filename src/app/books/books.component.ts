@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 	styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-
+    @ViewChild('f') myNgForm;
 	books;
 	authors$;
 	form;
@@ -41,22 +41,29 @@ export class BooksComponent implements OnInit {
 			this.authors$.subscribe(au => {
 				au.map(a => {
 					if(a.id === this.form.get('authors').value) {
-						let value = [];
+						const value = [];
 						value.push(a);
 						this.form.get('authors').patchValue(value)
 						this.auth.createBook(this.sandbox, this.form.value).subscribe(r => {
-							this.myRoute.navigate(['dashboard']);
+                            if (r.status === 201) {
+                                this.auth.getBooks(this.sandbox).subscribe(b => {
+                                    this.books = b;
+                                    this.myNgForm.resetForm();
+                                });
+                            }
 						});
 					}
-				})
-			})
-			
-			
+				});
+			});
 		}
 	}
 	delete(id) {
 		this.auth.deleteBook(this.sandbox, id).subscribe(r => {
-			this.myRoute.navigate(['dashboard']);
+            if (r.status === 204) {
+                this.auth.getBooks(this.sandbox).subscribe(b=> {
+                    this.books = b;
+                });
+            }
 		});
 	}
 

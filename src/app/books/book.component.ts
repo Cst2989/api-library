@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class BookComponent implements OnInit {
     book;
     form;
+    view: boolean = false;
     sandbox;
     authors$;
     constructor(private fb: FormBuilder,
@@ -20,6 +21,10 @@ export class BookComponent implements OnInit {
         private auth: AuthService) { }
 
     ngOnInit() {
+        this.route.data
+            .subscribe((data) => {
+                this.view = data.view;
+            });
         this.book = this.route.snapshot.data.book;
         this.sandbox =  this.route.snapshot.params['sandbox'];
         this.authors$ = this.auth.getAuthors(this.sandbox);
