@@ -1,0 +1,27 @@
+<mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+        <mat-card>
+            <form [formGroup]="form" (ngSubmit)="updateBook()">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Book Name" formControlName="name" />
+                </mat-form-field> <br>
+                <mat-form-field>
+                    <mat-select placeholder="Select author" formControlName="authors">
+                        <mat-option *ngFor="let author of authors$ | async" [value]="author.id">
+                          {{ author.firstName }}  {{ author.lastName }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> <br>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Number of Books" formControlName="total" />
+                </mat-form-field> <br>
+                <mat-form-field>
+                    <input matInput type="number" placeholder="Number of available Books" formControlName="available" />
+                </mat-form-field> <br>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Id" formControlName="id" />
+                </mat-form-field> <br>
+                <button mat-raised-button type="submit" color="primary">Update Book</button>
+            </form>
+        </mat-card>
+    </mat-grid-tile>

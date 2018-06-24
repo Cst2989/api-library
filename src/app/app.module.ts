@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -28,7 +28,8 @@ import { AuthorComponent } from './authors/author.component';
 import { AuthorsResolver } from './authors/authors.resolver';
 import { AuthorResolver } from './authors/author.resolver';
 import { BooksResolver } from './books/books.resolver';
-
+import { BookResolver } from './books/book.resolver';
+import { BookComponent } from './books/book.component';
 const appRoutes: Routes = [
   {
       path: 'dashboard',
@@ -53,7 +54,13 @@ const appRoutes: Routes = [
     path: ':sandbox/books',
     component: BooksComponent,
     canActivate: [AuthGuard],
-    resolve: { authors: BooksResolver }
+    resolve: { books: BooksResolver }
+  },
+  {
+      path: 'book/:id/:sandbox',
+      component: BookComponent,
+      canActivate: [AuthGuard],
+      resolve: { book: BookResolver },
   },
   { path: 'edit-profile', component: EditprofileComponent, canActivate: [AuthGuard], resolve: { user: UserResolver }},
   { path: 'view-loaned', component: ViewloanedComponent, canActivate: [AuthGuard], resolve: { books: LoanedResolver }},
@@ -72,6 +79,7 @@ const appRoutes: Routes = [
     EditprofileComponent,
     ViewloanedComponent,
     BooksComponent,
+    BookComponent,
     AuthorsComponent,
     AuthorComponent
   ],
@@ -85,6 +93,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
@@ -93,7 +102,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule
   ],
-  providers: [AuthService, UserResolver, AuthorResolver, LoanedResolver, AuthorsResolver, BooksResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [AuthService, UserResolver, AuthorResolver,BookResolver, LoanedResolver, AuthorsResolver, BooksResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthService {
   constructor(private myRoute: Router,
-              private http: HttpClient) {}
+    private http: HttpClient) {}
   sendToken(form) {
     const token = this.encrypt(form);
     localStorage.setItem('token', token);
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   getAuthors(sandbox) {
-        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox);
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox);
   }
 
   getAuthor(sandbox, id) {
@@ -56,11 +56,27 @@ export class AuthService {
   }
 
   deleteAuthor(sandbox, id) {
-      return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
+    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
   }
 
   getBooks(sandbox) {
-        return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox);
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox);
+  }
+
+  getBook(sandbox, id) {
+    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id);
+  }
+
+  updateBook(sandbox, id, formValue) {
+    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id, formValue);
+  }
+
+  createBook(sandbox, formValue) {
+    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox , formValue);
+  }
+
+  deleteBook(sandbox, id) {
+    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id);
   }
 
   getRole(username) {

@@ -1,27 +1,28 @@
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile>
-<mat-list>
-  <h3 mat-subheader>Authors</h3>
-  <mat-list-item *ngFor="let author of authors">
-    <mat-icon mat-list-icon>face</mat-icon>
-    <h4 mat-line>{{author.firstName}} {{author.lastName}} <span [routerLink]="'/author/' + author.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span (click)="delete(author.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-</mat-list>
+    <mat-list>
+      <h3 mat-subheader>Authors</h3>
+      <mat-list-item *ngFor="let author of authors">
+        <mat-icon mat-list-icon>face</mat-icon>
+        <h4 mat-line>{{author.firstName}} {{author.lastName}} <span [routerLink]="'/author/' + author.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span (click)="delete(author.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
   </mat-grid-tile>
   <mat-grid-tile>
-<mat-card>
-  <form [formGroup]="form" (ngSubmit)="addAuthor()">
-    <mat-form-field>
-      <input matInput type="text" placeholder="First Name" formControlName="firstName" />
-    </mat-form-field> <br>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Last Name" formControlName="lastName" />
-    </mat-form-field> <br>
-    <mat-form-field>
-      <input matInput type="text" placeholder="Id" formControlName="id" />
-    </mat-form-field> <br>
-    <button mat-raised-button type="submit" color="primary">Create Author</button>
-  </form>
-</mat-card>
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="addAuthor()">
+        <mat-form-field>
+          <input matInput type="text" placeholder="First Name" formControlName="firstName" />
+        </mat-form-field> <br>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Last Name" formControlName="lastName" />
+        </mat-form-field> <br>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Id" formControlName="id" />
+        </mat-form-field> <br>
+        <button mat-raised-button type="submit" color="primary">Create Author</button>
+      </form>
+    </mat-card>
   </mat-grid-tile>
+</mat-grid-list>
