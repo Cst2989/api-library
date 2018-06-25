@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatDialogModule, MatSelectModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +30,9 @@ import { AuthorResolver } from './authors/author.resolver';
 import { BooksResolver } from './books/books.resolver';
 import { BookResolver } from './books/book.resolver';
 import { BookComponent } from './books/book.component';
+import { ErrorsHandler } from './interceptors/error.service';
+import { DialogComponent } from './dialog/dialog.component';
+
 const appRoutes: Routes = [
   {
       path: 'dashboard',
@@ -87,6 +90,7 @@ const appRoutes: Routes = [
     ViewloanedComponent,
     BooksComponent,
     BookComponent,
+    DialogComponent,
     AuthorsComponent,
     AuthorComponent
   ],
@@ -102,6 +106,7 @@ const appRoutes: Routes = [
     FormsModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
@@ -110,7 +115,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatMenuModule
   ],
-  providers: [AuthService, UserResolver, AuthorResolver,BookResolver, LoanedResolver, AuthorsResolver, BooksResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  entryComponents: [DialogComponent],
+  providers: [{ provide: ErrorHandler, useClass: ErrorsHandler }, AuthService, UserResolver, AuthorResolver, BookResolver, LoanedResolver, AuthorsResolver, BooksResolver, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 

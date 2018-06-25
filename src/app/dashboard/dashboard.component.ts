@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,4 +19,5 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
   	this.sandbox = this.auth.getSandbox(this.user.username);
   }
+
 }

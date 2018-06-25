@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Error <span id="error_id">{{ data.status }}</span></h1>
+<div mat-dialog-content>
+    <span #photoInput></span>
+    <p *ngIf="data.status === 403">Forbidden!</p>
+    <p *ngIf="data.status === 404">Not Found!</p>
+    <p *ngIf="data.status === 401">Bad Credentials!</p>
+    <p *ngIf="data.status === 409">Resource Already exists!</p>
+    <p *ngIf="data.status === 422">Invalid Author!</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button id="close_button" [mat-dialog-close]>Ok</button>
+</div>
