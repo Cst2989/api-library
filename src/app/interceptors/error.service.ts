@@ -11,13 +11,22 @@ export class ErrorsHandler implements ErrorHandler {
     handleError(error: any) {
         // Do whatever you like with the error (send it to the server?)
         // And log it to the console
-        let dialogRef = this.dialog.open(DialogComponent, {
-            width: '250px',
-            data: { status: error.status}
-        });
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-        });
+        switch(error.status) {
+            case 403:
+                alert("Forbidden!")
+                break;
+            case 404:
+                alert("Not Found!")
+                break;
+            case 401:
+                alert("Bad Credentials!")
+                break;
+            case 409:
+                alert("Resource Already exists!")
+                break;
+            default:
+                alert("There was an error with the subbmited request!")
+        }
     }
 }

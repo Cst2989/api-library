@@ -3,15 +3,15 @@
         <mat-card>
             <form [formGroup]="form" (ngSubmit)="updateAuthor()">
                 <mat-form-field>
-                    <input matInput type="text" placeholder="First Name" formControlName="firstName" />
+                    <input matInput type="text" id="edit_firstName" placeholder="First Name" formControlName="firstName" />
                 </mat-form-field> <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Last Name" formControlName="lastName" />
+                    <input matInput type="text" id="edit_lastName" placeholder="Last Name" formControlName="lastName" />
                 </mat-form-field> <br>
                 <mat-form-field>
-                    <input matInput type="text" placeholder="Id" formControlName="id" />
+                    <input matInput type="text" id="edit_id" placeholder="Id" formControlName="id" />
                 </mat-form-field> <br>
-                <button mat-raised-button type="submit" color="primary">Update Author</button>
+                <button mat-raised-button id="update_author" type="submit" color="primary">Update Author</button>
             </form>
         </mat-card>
     </mat-grid-tile>

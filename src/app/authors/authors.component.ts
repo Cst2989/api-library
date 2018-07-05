@@ -44,6 +44,7 @@ export class AuthorsComponent implements OnInit {
     delete(id) {
         this.auth.deleteAuthor(this.sandbox, id).subscribe(r => {
             if (r.status === 204) {
+                alert("Author was deleted");
                 this.auth.getAuthors(this.sandbox).subscribe(a => {
                     this.authors = a;
                 });

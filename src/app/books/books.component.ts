@@ -60,6 +60,7 @@ export class BooksComponent implements OnInit {
 	delete(id) {
 		this.auth.deleteBook(this.sandbox, id).subscribe(r => {
             if (r.status === 204) {
+            	alert("Book was deleted");
                 this.auth.getBooks(this.sandbox).subscribe(b=> {
                     this.books = b;
                 });

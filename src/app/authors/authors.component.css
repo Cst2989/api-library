@@ -4,3 +4,7 @@
 span {
     cursor: pointer;
 }
+mat-list {
+    overflow: scroll;
+    height: 500px;
+}
