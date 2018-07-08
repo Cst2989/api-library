@@ -17,7 +17,7 @@
                     <input matInput type="number" placeholder="Number of Books" formControlName="total" />
                 </mat-form-field> <br>
                 <mat-form-field>
-                    <input matInput type="number" placeholder="Number of available Books" formControlName="available" />
+                    <input matInput type="number" [(ngModel)]="book.available" placeholder="Number of available Books" formControlName="available" />
                 </mat-form-field> <br>
                 <mat-form-field>
                     <input matInput type="text" placeholder="Id" formControlName="id" />
