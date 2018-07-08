@@ -11,7 +11,7 @@ export class ErrorsHandler implements ErrorHandler {
     handleError(error: any) {
         // Do whatever you like with the error (send it to the server?)
         // And log it to the console
-
+        console.log(error);
         switch(error.status) {
             case 403:
                 alert("Forbidden!")
@@ -26,6 +26,7 @@ export class ErrorsHandler implements ErrorHandler {
                 alert("Resource Already exists!")
                 break;
             default:
+
                 alert("There was an error with the subbmited request!")
         }
     }

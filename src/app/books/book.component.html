@@ -5,13 +5,14 @@
                 <mat-form-field>
                     <input matInput type="text" placeholder="Book Name" formControlName="name" />
                 </mat-form-field> <br>
-                <mat-form-field>
-                    <mat-select placeholder="Select author" formControlName="authors">
-                        <mat-option *ngFor="let author of authors$ | async" [value]="author.id">
+               <div class="form-div">
+                    <select class="form-control" formControlName="authors">
+                        <option value="">Select author</option>
+                        <option *ngFor="let author of authors$ | async" [value]="author.id">
                           {{ author.firstName }}  {{ author.lastName }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> <br>
+                        </option>
+                    </select>
+                </div> <br>
                 <mat-form-field>
                     <input matInput type="number" placeholder="Number of Books" formControlName="total" />
                 </mat-form-field> <br>
@@ -36,19 +37,20 @@
                 <mat-card-title>Lend Book</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-form-field>
-                    <mat-select id="select_lender" [(ngModel)]="lender" placeholder="Select who to lend" >
-                       <mat-option [value]="sandbox + '_tester1'">
+                <div>
+                    <select id="select_lender" [(ngModel)]="lender">
+                        <option value="">Select who to lend</option>
+                       <option [value]="sandbox + '_tester1'">
                             {{ sandbox }}_tester1
-                       </mat-option>
-                        <mat-option [value]="sandbox + '_tester2'">
+                       </option>
+                        <option [value]="sandbox + '_tester2'">
                             {{ sandbox }}_tester2
-                        </mat-option>
-                        <mat-option [value]="sandbox + '_tester3'">
+                        </option>
+                        <option [value]="sandbox + '_tester3'">
                             {{ sandbox }}_tester3
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> <br>
+                        </option>
+                    </select>
+                </div> <br>
                 <button mat-raised-button id="lend_book" (click)="lendBook()" color="primary">Lend Book</button>
             </mat-card-content>
         </mat-card>
@@ -58,19 +60,20 @@
                 <mat-card-title>Return Book</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <mat-form-field>
-                    <mat-select id="select_returner" [(ngModel)]="returner" placeholder="Select who to return" >
-                        <mat-option [value]="sandbox + '_tester1'">
+                <div>
+                    <select id="select_returner" [(ngModel)]="returner">
+                        <option value="">Select who to return</option>
+                        <option [value]="sandbox + '_tester1'">
                             {{ sandbox }}_tester1
-                        </mat-option>
-                        <mat-option [value]="sandbox + '_tester2'">
+                        </option>
+                        <option [value]="sandbox + '_tester2'">
                             {{ sandbox }}_tester2
-                        </mat-option>
-                        <mat-option [value]="sandbox + '_tester3'">
+                        </option>
+                        <option [value]="sandbox + '_tester3'">
                             {{ sandbox }}_tester3
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> <br>
+                        </option>
+                    </select>
+                </div> <br>
                 <button mat-raised-button id="return_book" (click)="returnBook()" color="primary">Return Book</button>
             </mat-card-content>
         </mat-card>

@@ -15,13 +15,14 @@
 				<mat-form-field>
 					<input matInput id="create_name" type="text" placeholder="Book Name" formControlName="name" />
 				</mat-form-field> <br>
-				<mat-form-field>
-					<mat-select id="select_authors" placeholder="Select author" formControlName="authors">
-					    <mat-option *ngFor="let author of authors$ | async" [value]="author.id">
+				<div>
+					<select id="select_authors" formControlName="authors">
+						<option value="">Select author</option>
+					    <option *ngFor="let author of authors$ | async" [value]="author.id">
 					      {{ author.firstName }}  {{ author.lastName }}
-					    </mat-option>
-					</mat-select>
-				</mat-form-field> <br>
+					    </option>
+					</select>
+				</div> <br>
 				<mat-form-field>
 					<input matInput id="create_total" type="text" placeholder="Number of Books" formControlName="total" />
 				</mat-form-field> <br>
