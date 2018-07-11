@@ -29,7 +29,8 @@ export class EditprofileComponent implements OnInit {
   edit() {
     if (this.form.valid) {
       this.auth.editProfile(this.form.value).subscribe(data => {
-          //this.myRoute.navigate(['dashboard']);
+          alert('User was updated!')
+          this.myRoute.navigate(['dashboard']);
       });
     }
   }

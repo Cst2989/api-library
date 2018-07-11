@@ -4,7 +4,7 @@
       <h3 mat-subheader>Authors</h3>
       <mat-list-item *ngFor="let author of authors">
         <mat-icon mat-list-icon>face</mat-icon>
-        <h4 mat-line>{{author.firstName}} {{author.lastName}} <span [id]="'edit_'+ author.id " [routerLink]="'/author/' + author.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span [id]="'delete_'+ author.id " (click)="delete(author.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
+        <h4 mat-line><a [id]="'view_' + author.id">{{author.firstName}} {{author.lastName}}</a> <span [id]="'edit_'+ author.id " [routerLink]="'/author/' + author.id + '/' + sandbox"><mat-icon style="color:blue" mat-list-icon>edit</mat-icon></span> <span [id]="'delete_'+ author.id " (click)="delete(author.id)"><mat-icon style="color:red" mat-list-icon>delete_forever</mat-icon></span></h4>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
@@ -21,7 +21,7 @@
         <mat-form-field>
           <input matInput type="text" id="create_id" placeholder="Id" formControlName="id" />
         </mat-form-field> <br>
-        <button mat-raised-button type="submit" color="primary">Create Author</button>
+        <button mat-raised-button type="submit" id="create_author" color="primary">Create Author</button>
       </form>
     </mat-card>
   </mat-grid-tile>
