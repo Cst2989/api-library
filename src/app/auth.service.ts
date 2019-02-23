@@ -11,7 +11,7 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
   encrypt(form) {
-    return btoa(form.username + ':' + form.password);
+    return btoa(form.email + ':' + form.password);
   }
   getToken() {
     return localStorage.getItem('token');
@@ -24,67 +24,67 @@ export class AuthService {
     this.myRoute.navigate(['login']);
   }
   register(formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/signup', formValue , { observe: 'response' });
+    return this.http.post('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/users/signup', formValue , { observe: 'response' });
   }
 
   editProfile(formValue) {
-    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/update', formValue);
+    return this.http.put('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/users/update', formValue);
   }
 
   getUser() {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/view');
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/users/view');
   }
 
   getLoaned() {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/users/view/lent_books');
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/users/view/lent_books');
   }
 
   getAuthors(sandbox) {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox);
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/authors/' + sandbox);
   }
 
   getAuthor(sandbox, id) {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id);
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/authors/' + sandbox + '/' + id);
   }
 
   updateAuthor(sandbox, id, formValue) {
-    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, formValue);
+    return this.http.put('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/authors/' + sandbox + '/' + id, formValue);
   }
 
   createAuthor(sandbox, formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox , formValue, { observe: 'response' });
+    return this.http.post('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/authors/' + sandbox , formValue, { observe: 'response' });
   }
 
   deleteAuthor(sandbox, id) {
-    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/authors/' + sandbox + '/' + id, { observe: 'response' });
+    return this.http.delete('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/authors/' + sandbox + '/' + id, { observe: 'response' });
   }
 
   getBooks(sandbox) {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox);
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox);
   }
 
   getBook(sandbox, id) {
-    return this.http.get('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id);
+    return this.http.get('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox + '/' + id);
   }
 
   updateBook(sandbox, id, formValue) {
-    return this.http.put('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id, formValue);
+    return this.http.put('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox + '/' + id, formValue);
   }
 
   lendBook(sandbox, id, userId) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/lend/' + userId, {},{ observe: 'response' });
+    return this.http.post('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox + '/' + id + '/lend/' + userId, {},{ observe: 'response' });
   }
 
   returnBook(sandbox, id, userId) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id + '/returned/' + userId, {},{ observe: 'response' });
+    return this.http.post('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox + '/' + id + '/returned/' + userId, {},{ observe: 'response' });
   }
 
   createBook(sandbox, formValue) {
-    return this.http.post('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox , formValue,  { observe: 'response' });
+    return this.http.post('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox , formValue,  { observe: 'response' });
   }
 
   deleteBook(sandbox, id) {
-    return this.http.delete('http://ec2-18-219-119-239.us-east-2.compute.amazonaws.com/books/' + sandbox + '/' + id, { observe: 'response' });
+    return this.http.delete('http://ec2-18-219-108-144.us-east-2.compute.amazonaws.com/api/v1/books/' + sandbox + '/' + id, { observe: 'response' });
   }
 
   getRole(username) {

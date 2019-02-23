@@ -38,28 +38,19 @@ export class BooksComponent implements OnInit {
 
 	addBook() {
 		if (this.form.valid) {
-			this.authors$.subscribe(au => {
-				au.map(a => {
-					if(a.id === this.form.get('authors').value) {
-						const value = [];
-						value.push(a);
-						this.form.get('authors').patchValue(value)
-						this.auth.createBook(this.sandbox, this.form.value).subscribe(r => {
-                            if (r.status === 201) {
-                                this.auth.getBooks(this.sandbox).subscribe(b => {
-                                    this.books = b;
-                                    this.myNgForm.resetForm();
-                                });
-                            }
-						});
-					}
-				});
-			});
+            this.auth.createBook(this.sandbox, this.form.value).subscribe(r => {
+                if (r.status === 201) {
+                    this.auth.getBooks(this.sandbox).subscribe(b => {
+                        this.books = b;
+                        this.myNgForm.resetForm();
+                    });
+                }
+            });
 		}
 	}
 	delete(id) {
 		this.auth.deleteBook(this.sandbox, id).subscribe(r => {
-            if (r.status === 204) {
+            if (r.status === 203) {
             	alert('Book was deleted');
                 this.auth.getBooks(this.sandbox).subscribe(b => {
                     this.books = b;

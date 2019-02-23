@@ -27,41 +27,30 @@ export class BookComponent implements OnInit {
             .subscribe((data) => {
                 this.view = data.view;
             });
-        this.book = this.route.snapshot.data.book;
+        this.book = this.route.snapshot.data.book[0];
         this.sandbox =  this.route.snapshot.params['sandbox'];
         this.authors$ = this.auth.getAuthors(this.sandbox);
         this.form = this.fb.group({
             name: [this.book.name, [ Validators.required ]],
             total: [this.book.total, Validators.required],
             available: [this.book.available, Validators.required],
-            authors: [this.book.authors[0].id, Validators.required],
+            authors: [this.book.authors, Validators.required],
             id: [this.book.id, Validators.required]
         });
     }
 
     updateBook() {
         if (this.form.valid) {
-            if (this.form.valid) {
-                this.authors$.subscribe(au => {
-                    au.map(a => {
-                        if(a.id === this.form.get('authors').value) {
-                            const value = [];
-                            value.push(a);
-                            this.form.get('authors').patchValue(value)
-                            this.auth.updateBook(this.sandbox, this.book.id, this.form.value).subscribe(r => {
-                                this.myRoute.navigate([this.sandbox, 'books']);
-                            });
-                        }
-                    });
-                });
-            }
+            this.auth.updateBook(this.sandbox, this.book.id, this.form.value).subscribe(r => {
+                this.myRoute.navigate([this.sandbox, 'books']);
+            });
         }
     }
     lendBook() {
         this.auth.lendBook(this.sandbox, this.book.id, this.lender).subscribe(r => {
             if (r.status === 204) {
                 this.auth.getBook(this.sandbox, this.book.id).subscribe(book => {
-                    this.book = book;
+                    this.book = book[0];
                     alert('Book was loaned');
                 });
             }
@@ -75,7 +64,7 @@ export class BookComponent implements OnInit {
         this.auth.returnBook(this.sandbox, this.book.id, this.returner).subscribe(r => {
             if (r.status === 204) {
                 this.auth.getBook(this.sandbox, this.book.id).subscribe(book => {
-                    this.book = book;
+                    this.book = book[0];
                     alert('Book was returned');
                 });
             }

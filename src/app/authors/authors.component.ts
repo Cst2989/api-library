@@ -32,7 +32,7 @@ export class AuthorsComponent implements OnInit {
     addAuthor() {
         if (this.form.valid) {
             this.auth.createAuthor(this.sandbox, this.form.value).subscribe(r => {
-                if (r.status === 201) {
+                if (r.status === 200) {
                     this.auth.getAuthors(this.sandbox).subscribe(a => {
                         this.authors = a;
                         this.myNgForm.resetForm();
@@ -43,8 +43,8 @@ export class AuthorsComponent implements OnInit {
     }
     delete(id) {
         this.auth.deleteAuthor(this.sandbox, id).subscribe(r => {
-            if (r.status === 204) {
-                alert("Author was deleted");
+            if (r.status === 200) {
+                alert('Author was deleted');
                 this.auth.getAuthors(this.sandbox).subscribe(a => {
                     this.authors = a;
                 });

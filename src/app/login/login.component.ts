@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     private myRoute: Router,
     private auth: AuthService) {
     this.form = fb.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
