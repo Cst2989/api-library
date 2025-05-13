@@ -24,7 +24,7 @@ export class AuthService {
   }
   register(formValue) {
     return this.http.post(
-      "http://35.205.170.236/api/v1/users/signup",
+      "https://library-api.academiatestarii.ro/api/v1/users/signup",
       formValue,
       { observe: "response" }
     );
@@ -32,39 +32,39 @@ export class AuthService {
 
   editProfile(formValue) {
     return this.http.put(
-      "http://35.205.170.236/api/v1/users/update",
+      "https://library-api.academiatestarii.ro/api/v1/users/update",
       formValue
     );
   }
 
   getUser() {
-    return this.http.get("http://35.205.170.236/api/v1/users/view");
+    return this.http.get("https://library-api.academiatestarii.ro/api/v1/users/view");
   }
 
   getLoaned() {
-    return this.http.get("http://35.205.170.236/api/v1/users/view/lent_books");
+    return this.http.get("https://library-api.academiatestarii.ro/api/v1/users/view/lent_books");
   }
 
   getAuthors(sandbox) {
-    return this.http.get("http://35.205.170.236/api/v1/authors/" + sandbox);
+    return this.http.get("https://library-api.academiatestarii.ro/api/v1/authors/" + sandbox);
   }
 
   getAuthor(sandbox, id) {
     return this.http.get(
-      "http://35.205.170.236/api/v1/authors/" + sandbox + "/" + id
+      "https://library-api.academiatestarii.ro/api/v1/authors/" + sandbox + "/" + id
     );
   }
 
   updateAuthor(sandbox, id, formValue) {
     return this.http.put(
-      "http://35.205.170.236/api/v1/authors/" + sandbox + "/" + id,
+      "https://library-api.academiatestarii.ro/api/v1/authors/" + sandbox + "/" + id,
       formValue
     );
   }
 
   createAuthor(sandbox, formValue) {
     return this.http.post(
-      "http://35.205.170.236/api/v1/authors/" + sandbox,
+      "https://library-api.academiatestarii.ro/api/v1/authors/" + sandbox,
       formValue,
       { observe: "response" }
     );
@@ -72,31 +72,31 @@ export class AuthService {
 
   deleteAuthor(sandbox, id) {
     return this.http.delete(
-      "http://35.205.170.236/api/v1/authors/" + sandbox + "/" + id,
+      "https://library-api.academiatestarii.ro/api/v1/authors/" + sandbox + "/" + id,
       { observe: "response" }
     );
   }
 
   getBooks(sandbox) {
-    return this.http.get("http://35.205.170.236/api/v1/books/" + sandbox);
+    return this.http.get("https://library-api.academiatestarii.ro/api/v1/books/" + sandbox);
   }
 
   getBook(sandbox, id) {
     return this.http.get(
-      "http://35.205.170.236/api/v1/books/" + sandbox + "/" + id
+      "https://library-api.academiatestarii.ro/api/v1/books/" + sandbox + "/" + id
     );
   }
 
   updateBook(sandbox, id, formValue) {
     return this.http.put(
-      "http://35.205.170.236/api/v1/books/" + sandbox + "/" + id,
+      "https://library-api.academiatestarii.ro/api/v1/books/" + sandbox + "/" + id,
       formValue
     );
   }
 
   lendBook(sandbox, id, userId) {
     return this.http.post(
-      "http://35.205.170.236/api/v1/books/" +
+      "https://library-api.academiatestarii.ro/api/v1/books/" +
         sandbox +
         "/" +
         id +
@@ -109,7 +109,7 @@ export class AuthService {
 
   returnBook(sandbox, id, userId) {
     return this.http.post(
-      "http://35.205.170.236/api/v1/books/" +
+      "https://library-api.academiatestarii.ro/api/v1/books/" +
         sandbox +
         "/" +
         id +
@@ -122,7 +122,7 @@ export class AuthService {
 
   createBook(sandbox, formValue) {
     return this.http.post(
-      "http://35.205.170.236/api/v1/books/" + sandbox,
+      "https://library-api.academiatestarii.ro/api/v1/books/" + sandbox,
       formValue,
       { observe: "response" }
     );
@@ -130,7 +130,7 @@ export class AuthService {
 
   deleteBook(sandbox, id) {
     return this.http.delete(
-      "http://35.205.170.236/api/v1/books/" + sandbox + "/" + id,
+      "https://library-api.academiatestarii.ro/api/v1/books/" + sandbox + "/" + id,
       { observe: "response" }
     );
   }
