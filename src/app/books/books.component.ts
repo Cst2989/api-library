@@ -44,6 +44,8 @@ export class BooksComponent implements OnInit {
                         this.books = b;
                         this.myNgForm.resetForm();
                     });
+                } else if (r.status === 409) {
+                    alert('Book with ID ' + this.form.value.id + ' already exists');
                 }
             });
 		}

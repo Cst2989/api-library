@@ -1,3 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 body { margin: 0; }
+
+.readonly-field .mat-input-element {
+  background-color: #f0f0f0; /* Light grey background */
+  cursor: not-allowed; /* Indicate it's not interactive, though still focusable */
+}

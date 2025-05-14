@@ -37,6 +37,8 @@ export class AuthorsComponent implements OnInit {
                         this.authors = a;
                         this.myNgForm.resetForm();
                     });
+                } else if (r.status === 409) {
+                    alert('Author with ID ' + this.form.value.id + ' already exists');
                 }
             });
         }

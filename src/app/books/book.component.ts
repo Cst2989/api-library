@@ -35,7 +35,6 @@ export class BookComponent implements OnInit {
             total: [this.book.total, Validators.required],
             available: [this.book.available, Validators.required],
             authors: [this.book.authors, Validators.required],
-            id: [this.book.id, Validators.required]
         });
     }
 

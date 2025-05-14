@@ -19,9 +19,6 @@
                 <mat-form-field>
                     <input matInput id="edit_available" type="number" [(ngModel)]="book.available" placeholder="Number of available Books" formControlName="available" />
                 </mat-form-field> <br>
-                <mat-form-field>
-                    <input matInput id="edit_id" type="text" placeholder="Id" formControlName="id" />
-                </mat-form-field> <br>
                 <button mat-raised-button id="update_book" type="submit" color="primary">Update Book</button>
             </form>
             <span *ngIf="view">

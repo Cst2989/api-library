@@ -19,12 +19,12 @@ export class AuthorComponent implements OnInit {
                 private auth: AuthService) { }
 
     ngOnInit() {
-        this.author = this.route.snapshot.data.author;
+      console.log(this.route.snapshot.data);
+        this.author = this.route.snapshot.data.author[0];
         this.sandbox =  this.route.snapshot.params['sandbox'];
         this.form = this.fb.group({
             firstName: [this.author.firstName, [ Validators.required ]],
             lastName: [this.author.lastName, Validators.required],
-            id: [this.author.id, Validators.required]
         });
     }
 
